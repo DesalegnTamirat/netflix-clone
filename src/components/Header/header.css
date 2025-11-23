@@ -14,9 +14,12 @@
   cursor: pointer;
 }
 .header-left ul {
-  width: 150%;
+  width: 140%;
+}
+.logo {
+  height: 50px;
 }
 .header-right ul {
-  width: 140%;
-  font-size: 27px;
+  width: 120%;
+  font-size: 30px;
 }

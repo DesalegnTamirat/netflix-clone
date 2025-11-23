@@ -5,6 +5,7 @@ import {
   MdSearch,
 } from "react-icons/md";
 import "./header.css";
+import logo from "../../assets/images/logo.png";
 
 function Header() {
   return (
@@ -12,6 +13,9 @@ function Header() {
       <div className="header-container place-between">
         <div className="header-left">
           <ul className="place-between">
+            <li className="place-center">
+              <img src={logo} alt="Netflix logo" className="logo" />
+            </li>
             <li>Home</li>
             <li>TV Shows</li>
             <li>Movies</li>
@@ -22,16 +26,16 @@ function Header() {
         </div>
         <div className="header-right">
           <ul className="place-between">
-            <li>
+            <li className="place-center">
               <MdSearch />
             </li>
-            <li>
+            <li className="place-center">
               <MdNotificationsNone />
             </li>
-            <li>
+            <li className="place-center">
               <MdAccountBox />
             </li>
-            <li>
+            <li className="place-center">
               <MdArrowDropDown />
             </li>
           </ul>
