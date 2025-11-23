@@ -1,0 +1,22 @@
+.header-outer-container {
+  background-color: #111;
+  position: sticky;
+  top: 0;
+  height: 10vh;
+  color: white;
+  transition: all 0.5s ease-in;
+}
+.header-container {
+  width: 90%;
+}
+.header-container ul {
+  list-style: none;
+  cursor: pointer;
+}
+.header-left ul {
+  width: 150%;
+}
+.header-right ul {
+  width: 140%;
+  font-size: 27px;
+}
