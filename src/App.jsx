@@ -5,7 +5,7 @@ import Movies from "./components/Movies/Movies";
 function App() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <Movies />
       <Footer />
     </>
