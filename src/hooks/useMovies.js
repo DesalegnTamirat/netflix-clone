@@ -13,7 +13,6 @@ const useMovies = (endPoint, params) => {
         setError("");
         
         const response = await apiClient.get(endPoint, {params});
-        console.log(response.data);
         setMovies(response.data.results);
       }
       catch(err) {

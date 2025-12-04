@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import apiClient from "../../services/api-client";
 import requests from "../../utils/requests";
 import "./banner.css";
 
-const Banner = () => {
+function Banner() {
   const [movie, setMovie] = useState({});
   useEffect(() => {
-    (async () => {
+    const fetchMovies = async () => {
       try {
-        const request = await apiClient.get(requests.fetchNetflixOriginals);
-        setMovie(
-          request.data.results[
-            Math.floor(Math.random() * request.data.results.length)
-          ]
-        );
+        const res = await apiClient.get(requests.fetchNetflixOriginals);
+        const movies = res.data.results;
+        const i = Math.floor(Math.random() * movies.length);
+        setMovie(movies[i]);
       } catch (error) {
         console.log("error", error);
       }
-    })();
+    };
+    fetchMovies();
   }, []);
 
   function truncate(str, n) {
@@ -33,21 +32,19 @@ const Banner = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="banner__contents">
-        <h1 className="banner__title">
+      <div className="banner-contents">
+        <h1 className="banner-title">
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
-        <div className="banner__buttons">
-          <button className="banner__button play">Play</button>
-          <button className="banner__button">My List</button>
+        <div className="banner-buttons">
+          <button className="banner-button play">Play</button>
+          <button className="banner-button">My List</button>
         </div>
-        <h1 className="banner__description">
-          {truncate(movie?.overview, 150)}
-        </h1>
+        <h1 className="banner-description">{truncate(movie?.overview, 150)}</h1>
       </div>
-      <div className="banner__fadeBottom" />
+      <div className="banner-fadeBottom" />
     </div>
   );
-};
+}
 
 export default Banner;
