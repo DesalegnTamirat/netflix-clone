@@ -1,43 +1,32 @@
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import "./footer.css";
+import { FOOTER_LINKS } from "../../utils/data";
 
 function Footer() {
   return (
-    <div className="footer-outer-container justify-center">
-      <div className="footer-container">
-        <div className="footer-icons justify-between">
-          <FaFacebook />
-          <FaInstagram />
-          <FaYoutube />
+    <footer className="footer-outer-container flex-center">
+      <div className="footer-container screen-padding">
+        <div className="footer-icons flex-container">
+          <FaFacebook size={30} />
+          <FaInstagram size={30} />
+          <FaYoutube size={30} />
         </div>
-        <div className="footer-data justify-between">
-          <ul>
-            <li>Audio Description</li>
-            <li>Investor Relations</li>
-            <li>Legal Notice</li>
-          </ul>
-          <ul>
-            <li>Help Center</li>
-            <li>Jobs</li>
-            <li>Cookie Preferences</li>
-          </ul>
-          <ul>
-            <li>Gift Cards</li>
-            <li>Terms of Use</li>
-            <li>Corporate Information</li>
-          </ul>
-          <ul>
-            <li>Media Center</li>
-            <li>Privacy</li>
-            <li>Contact Us</li>
-          </ul>
+
+        <div className="footer-data">
+          {FOOTER_LINKS.flat().map((link) => (
+            <div key={link} className="footer-link-item">
+              <a href="#">{link}</a>
+            </div>
+          ))}
         </div>
-        <p className="service-code place-center">Service Code</p>
+
+        <button className="service-code-button">Service Code</button>
+
         <p className="copy-write">
           &copy; {new Date().getFullYear()} Netflix, Inc.
         </p>
       </div>
-    </div>
+    </footer>
   );
 }
 

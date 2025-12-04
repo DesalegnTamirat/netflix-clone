@@ -1,25 +1,73 @@
 .header-outer-container {
-  background-color: #111;
-  position: sticky;
+  position: fixed;
   top: 0;
-  height: 10vh;
-  color: white;
-  transition: all 0.5s ease-in;
+  left: 0;
+  width: 100%;
+  height: 68px;
+  z-index: 999;
+  color: var(--color-white);
+  background-color: transparent;
+  transition: background-color 0.4s ease-in-out;
 }
+
+.header-black {
+  background-color: var(--color-dark);
+}
+
 .header-container {
-  width: 90%;
+  height: 100%;
+  margin: 0 auto;
 }
-.header-container ul {
+
+/* === Left Section (Logo & Nav) === */
+.header-left {
+  gap: 10px;
+}
+
+.logo {
+  height: 25px;
+  min-width: 92px;
+  margin-right: 15px;
+}
+
+.nav-list {
   list-style: none;
+  gap: 20px;
+}
+
+.nav-item a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 0.9em;
   cursor: pointer;
 }
-.header-left ul {
-  width: 140%;
+
+.nav-item a:hover {
+  color: var(--color-gray);
 }
-.logo {
-  height: 50px;
+
+@media screen and (max-width: 1024px) {
+  .nav-list {
+    display: none;
+  }
 }
-.header-right ul {
-  width: 120%;
-  font-size: 30px;
+
+.header-right {
+  height: 100%;
+}
+
+.icon-list {
+  list-style: none;
+  gap: 20px;
+}
+
+.icon-item {
+  cursor: pointer;
+  font-size: 1.1em;
+}
+
+.profile-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }

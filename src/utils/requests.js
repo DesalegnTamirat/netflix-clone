@@ -1,3 +1,5 @@
+// utils/requests.js
+
 const requests = {
   fetchTrending: `/trending/all/week?language=en-US`,
   fetchNetflixOriginals: `/discover/tv?with_networks=213`,
@@ -7,7 +9,8 @@ const requests = {
   fetchHorrorMovies: `/discover/movie?with_genres=27`,
   fetchRomanceMovies: `/discover/movie?with_genres=10749`,
   fetchDocumentaries: `/discover/movie?with_genres=99`,
-  fetchTvShow: `tv/popular?language=en-US&page=1`,
+  // Corrected the path for TV Shows to ensure it's absolute from base URL
+  fetchTvShow: `/tv/popular?language=en-US&page=1`,
 };
 
 export default requests;

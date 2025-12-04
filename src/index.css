@@ -2,28 +2,42 @@
 * {
   margin: 0;
   padding: 0;
-}
-body {
-  background-color: #444;
+  box-sizing: border-box; /* Best practice to include this */
 }
 
-/* >==> Utility Classes <==< */
-.place-center, .place-between {
-  display: flex;
-  align-items: center;
+/* ==> Define Netflix color palette and font */
+:root {
+  --color-dark: #141414; /* The main Netflix background */
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-red: #e50914; /* Netflix Red */
+  --color-gray: #808080;
+  --font-family-primary: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.place-center {
+
+body {
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  font-family: var(--font-family-primary);
+  overflow-x: hidden;
+}
+
+/* >==> Utility Classes Refinement <==< */
+.flex-container {
+    display: flex;
+    align-items: center; 
+}
+.flex-center {
   justify-content: center;
 }
-.place-between {
+.flex-between {
   justify-content: space-between;
 }
-.justify-between, .justify-center {
-  display: flex;
+.screen-padding {
+    padding-left: 4%;
+    padding-right: 4%;
 }
-.justify-between {
-  justify-content: space-between;
-}
-.justify-center {
-  justify-content: center;
+.row-list-container {
+    padding-top: 10px; 
+    margin-top: -100px; 
 }

@@ -1,47 +1,38 @@
-import { useEffect, useState } from "react";
-import apiClient from "../../services/api-client";
-import requests from "../../utils/requests";
+import useBannerMovie from "../../hooks/useBannerMovie";
+import { IMAGE_BASE_URL } from "../../services/api-client";
+import { truncate } from "../../utils/helper";
+import BannerLoading from "../Shared/BannerLoading";
 import "./banner.css";
 
 function Banner() {
-  const [movie, setMovie] = useState({});
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const res = await apiClient.get(requests.fetchNetflixOriginals);
-        const movies = res.data.results;
-        const i = Math.floor(Math.random() * movies.length);
-        setMovie(movies[i]);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
-    fetchMovies();
-  }, []);
+  const { movie, isLoading, error } = useBannerMovie();
 
-  function truncate(str, n) {
-    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
-  }
+  if (isLoading) return <BannerLoading />;
+
+  if (error) return <div className="banner-error">Error: {error}</div>;
+
+  const title = movie?.title || movie?.name || movie?.original_name;
+  const description = truncate(movie?.overview, 150);
+
   return (
     <div
       className="banner"
       style={{
         backgroundSize: "cover",
-        backgroundImage: `url('https://image.tmdb.org/t/p/original${movie?.backdrop_path}')`,
-        backgroundPosition: "center",
+        backgroundImage: `url('${IMAGE_BASE_URL}${movie?.backdrop_path}')`,
+        backgroundPosition: "top center",
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="banner-contents">
-        <h1 className="banner-title">
-          {movie?.title || movie?.name || movie?.original_name}
-        </h1>
+      <div className="banner-contents screen-padding">
+        <h1 className="banner-title">{title}</h1>
         <div className="banner-buttons">
-          <button className="banner-button play">Play</button>
-          <button className="banner-button">My List</button>
+          <button className="banner-button play">▶ Play</button>
+          <button className="banner-button">➕ My List</button>
         </div>
-        <h1 className="banner-description">{truncate(movie?.overview, 150)}</h1>
+        <h1 className="banner-description">{description}</h1>
       </div>
+
       <div className="banner-fadeBottom" />
     </div>
   );

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   MdAccountBox,
   MdArrowDropDown,
@@ -6,42 +7,60 @@ import {
 } from "react-icons/md";
 import "./header.css";
 import logo from "../../assets/images/logo.png";
+import { Link } from "react-router-dom";
+import { NAV_LINKS } from "../../utils/data";
 
 function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // >=> Cleanup the event listener
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="header-outer-container place-center">
-      <div className="header-container place-between">
-        <div className="header-left">
-          <ul className="place-between">
-            <li className="place-center">
-              <img src={logo} alt="Netflix logo" className="logo" />
-            </li>
-            <li>Home</li>
-            <li>TV Shows</li>
-            <li>Movies</li>
-            <li>Latest</li>
-            <li>My List</li>
-            <li>Browse by Languages</li>
+    <header
+      className={`header-outer-container ${isScrolled ? "header-black" : ""}`}
+    >
+      <div className="header-container flex-container flex-between screen-padding">
+        {/* === Left Section (Logo & Nav) === */}
+        <nav className="header-left flex-container">
+          <img src={logo} alt="Netflix logo" className="logo" />
+          <ul className="nav-list flex-container">
+            {NAV_LINKS.map((link) => (
+              <li key={link} className="nav-item">
+                <Link to="/">{link}</Link>
+              </li>
+            ))}
           </ul>
-        </div>
-        <div className="header-right">
-          <ul className="place-between">
-            <li className="place-center">
-              <MdSearch />
+        </nav>
+
+        {/* === Right Section (Icons) === */}
+        <div className="header-right flex-container">
+          <ul className="icon-list flex-container">
+            <li className="icon-item">
+              <MdSearch size={24} />
             </li>
-            <li className="place-center">
-              <MdNotificationsNone />
+            <li className="icon-item">Kids</li>{" "}
+            <li className="icon-item">
+              <MdNotificationsNone size={24} />
             </li>
-            <li className="place-center">
-              <MdAccountBox />
-            </li>
-            <li className="place-center">
-              <MdArrowDropDown />
+            <li className="icon-item profile-dropdown">
+              <MdAccountBox size={24} />
+              <MdArrowDropDown size={24} />
             </li>
           </ul>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 

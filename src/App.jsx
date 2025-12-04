@@ -1,16 +1,16 @@
-import Banner from "./components/Banner/Banner";
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import Movies from "./components/Movies/Movies";
+// App.jsx (Final)
+
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Layout from "./layout/Layout";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Banner />
-      <Movies />
-      <Footer />
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+      </Route>
+    </Routes>
   );
 }
 
