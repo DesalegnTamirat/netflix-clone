@@ -1,15 +1,15 @@
 {
-  "name": "netflix-clone",
+  "name": "movie-streaming-website",
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://DesalegnTamirat.github.io/netflix-clone",
+  "homepage": "https://DesalegnTamirat.github.io/movie-streaming-website",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",       
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
